@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+ <head>
+   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   	<title>Event Track Example #6</title>
+  	<meta property="og:title" content="Syncapse Event Track Demo #6"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="http://developers.synhq.com/syncapse-event-track/examples/implementation-6.html"/>
+	<meta property="og:image" content="http://developers.synhq.com/syncapse-event-track/static/og-image.png" />
+	<meta property="og:site_name" content="Syncapse Event Track Demos"/>
+	<meta property="fb:app_id" content="234092466622279"/>
+	<meta property="og:description" content="Syncapse Event Track Demo #6 - Facebook Event Tracking"/>
+	<style type="text/css">
+		body {
+			width: 510px; 
+			margin: 0; padding: 0;
+		}
+		.fb-stuff div.example-plugin {
+			width: 470px;
+			margin: 0 0 10px 0;
+			padding: 15px;
+			border: 1px dashed black;
+		}
+		.fb-stuff div.example-plugin h4 {
+			margin: 0 0 10px 0;
+			padding: 0;
+		}
+		.pseudo-link {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	</style>
+ </head>
+<body>
+
+
+<h3>Syncapse Event Track Example #6</h3>
+<ul>
+	<li><a href="implementation-1.html">View Example #1</a></li>
+	<li><a href="implementation-2.html">View Example #2</a></li>
+	<li><a href="implementation-3.html">View Example #3</a></li>
+	<li><a href="implementation-4.html">View Example #4</a></li>
+	<li><a href="implementation-5.html">View Example #5</a></li>
+	<li><a href="implementation-6.html">View Example #6</a></li>
+</ul>
+<p>
+	<!-- This link will be tracked automatically by Event Track as a link-click event -->
+	<a href="#default-link">A default link</a><br/>
+	
+	<!-- This link will be tracked automatically by Event Track as a link-click-test-1 event -->
+	<a href="#link-test-1" track="link-click-test-1">My Test Link</a><br/>
+	
+	<!-- This link will be NOT tracked automatically by Event Track -->
+	<a href="#link-test-untracked" track="false">An Untracked Link</a><br/>
+	
+	
+	<!-- A non-auto-tracked element -->
+	<div><span class="pseudo-link" onclick="_spet.track('custom-event-1')">My Explicitly Tracked Element</span></div>
+	
+	<!-- A non-auto-tracked element with custom parameters -->
+	<div><span class="pseudo-link" onclick="_spet.track('custom-event-2', { specialValue: 'something special' })">My Explicitly Tracked Element with params</span></div>
+	
+	<!-- A non-auto-tracked element -->
+	<script type="text/javascript">
+	var customTrack = function() {
+		if (confirm("Are you sure you want to confirm?")) {
+			_spet.track('custom-event-3-confirmed', { confirmed: true });
+		} else {
+			_spet.track('custom-event-3-unconfirmed', { confirmed: false });
+		}
+	};
+	</script>
+	<div><span class="pseudo-link" onclick="customTrack();">My Explicitly Tracked Element with custom JavaScript</span></div><br/>
+	
+	<!-- This form will be tracked automatically by Event Track event as a form-submit event -->
+	<form action="#default-form" method="GET"><div>Default form</div><input type="submit" /></form>
+	
+	<!-- This form will be tracked automatically by Event Track event as a form-submit-test-1 event -->
+	<form action="#form-test-1" method="GET" track="form-submit-test-1"><div>Custom track form</div><input type="submit" /></form><br/>
+	
+	<div class="fb-stuff">
+		<div class="example-plugin">
+			<h4>Login &amp; Logout</h4>
+			<!-- Add an FB Login Button Plugin -->
+			<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button><br/>
+			
+			<!-- Add a simple logout button -->
+			<a href="#" track="link-click-logout" onclick="FB.logout(window.location.refresh); return true;">Logout</a>
+		</div>
+		
+		<!-- Add an FB Like Button Plugin -->
+		<div class="example-plugin">
+			<h4>Like Plugin</h4>
+			<fb:like href="http://developers.synhq.com/syncapse-event-track/examples/implementation-6.html" send="true" width="460" show_faces="true"></fb:like>
+		</div>
+		
+		<!-- Add an FB Comments Plugin -->
+		<div class="example-plugin">
+			<h4>Comments Plugin</h4>
+			<fb:comments href="http://developers.synhq.com/syncapse-event-track/examples/implementation-6.html" num_posts="2" width="460"></fb:comments>
+		</div>
+	</div>
+</p>
+
+
+<!-- Load FB JS SDK -->
+<div id="fb-root"></div>
+<script>
+(function() {
+    var e = document.createElement('script');
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+}());  
+</script>
+
+<!-- Load jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+
+<!-- Syncapse Tracking Code START -->
+<script type="text/javascript" src="../src/SPET.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+	var appId = '234092466622279'; // The Event Track 1.1 iframe Demo App
+	var source = "http://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_?sk=app_" + appId;
+	var params = {"debug":true};
+	window._spet = new SPET(source, null, params);
+	
+    // this attaches listeners for <A> and <FORM> events
+    _spet.attachListeners(document);
+
+    // Set up a function to call when FB is loaded and ready
+    var onFbReady = function() {
+        
+        // Trigger a resize event
+        FB.Canvas.setAutoResize();
+        
+        // Run the main FB.init
+        FB.init({
+            appId  : '234092466622279', // The Event Track 1.1 iframe Demo App
+            status : true, // check login status
+            cookie : true, // enable cookies to allow the server to access the session
+            xfbml  : true,  // parse XFBML
+            channelUrl  : '//developers.synhq.com/syncapse-event-track/static/channel.html', // Custom Channel URL
+            oauth : true //enables OAuth 2.0
+        });
+        console.info("FB.init called");
+
+        // this attaches listeners for Facebook JS SDK events
+        _spet.attachFBListeners();
+    };
+    
+    // We need to allow for cases where jQuery finishes before FB JS SDK init
+    if (window.FB) {
+    	onFbReady();
+    } else {
+	    // Add fbAsyncInit function for FB JS SDK
+	    window.fbAsyncInit = onFbReady;
+    }
+});
+//]]>
+</script>
+<!-- Syncapse Tracking Code END -->
+</body>
+</html>
