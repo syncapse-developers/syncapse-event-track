@@ -1,7 +1,7 @@
 Syncapse Event Track
 ====================
 
-Event Track contains client-side JavaScript that enabled iframe Facebook Tabs to send data to the Syncapse Analytics Suite.
+Event Track contains client-side JavaScript that enables iframe Facebook Tabs to send data to the Syncapse Analytics Suite.
 
 Please see https://developers.synhq.com/docs-event-track/ for detailed documentation.
 
