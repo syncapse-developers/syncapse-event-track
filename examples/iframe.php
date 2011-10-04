@@ -5,13 +5,8 @@
  * 	* https://github.com/syncapse-developers/syncapse-event-track/issues
  */
 
-// Set a cookie to confound any front-end caches (like our aggressive Varnish cache)
+// Set a dumb cookie to confound any front-end caches 
 if ( ! headers_sent()) setcookie('foo', microtime());
-
-$in_https = (array_key_exists('HTTPS', $_SERVER) && $_SERVER['HTTPS'] != '');
-$in_https = $in_https || (array_key_exists('HTTP_X_FORWARDED_SSL', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_SSL'] != '');
-
-$proto = $in_https ? 'https:' : 'http:';
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
