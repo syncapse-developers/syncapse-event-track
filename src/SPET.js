@@ -65,7 +65,7 @@ function SPET(source, session, params)
 	
 	// Populate a 'from' var - the query string variable name can be specified in the params as 'fromVariableName'
 	var fromVariableName = params.fromVariableName || 'from';
-	params.from = params["get_" + fromVariableName];
+	params.from = params["get_" + fromVariableName] || undefined;
 	
 	// See if we are in FBML
 	this.inFbml = ((typeof params.inFbml !== 'undefined') && params.inFbml) || (typeof Image === 'undefined');
@@ -100,6 +100,8 @@ SPET.prototype.addQueryVars = function(params, query, prefix) {
 	var q = this.getQueryParams(query);
 	prefix = prefix || "get_";
 	for (var k in q) {
+		if (k == '') continue;
+		if (q[k] == '') continue;
 		params[prefix + k] = q[k];
 	}
 	return params;
