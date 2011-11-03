@@ -8,7 +8,7 @@ Please see https://developers.syncapse.com/documentation/ for detailed documenta
 Examples
 --------
 See the example Facebook Tab:
-   * https://www.facebook.com/pages/Event-Tracking-Demo/169269273142241
+   * https://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_209234352475373
 
 See the standalone examples:
    * https://developers.syncapse.com/syncapse-event-track/examples/implementation-6.html

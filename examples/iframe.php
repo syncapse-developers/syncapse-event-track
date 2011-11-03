@@ -5,8 +5,8 @@
  * 	* https://github.com/syncapse-developers/syncapse-event-track/issues
  */
 
-// Set a dumb cookie to confound any front-end caches 
-if ( ! headers_sent()) setcookie('foo', microtime());
+// Confound any front-end caches 
+if ( ! headers_sent()) header("Cache-control: Private");
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
