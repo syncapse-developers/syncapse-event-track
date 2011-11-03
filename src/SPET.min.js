@@ -1,6 +1,6 @@
 /*** 
  * @fileOverview Syncapse Platform Event Track
- * @author syncapseUK@syncapse.comts.
+ * @author developer-support@syncapse.com
  * @see https://github.com/syncapse-developers/syncapse-event-track 
  * @copyright Syncapse
  * @license For use by clients of Syncapse and their agencies. Sorry, this code is not Free/Open Source :(
