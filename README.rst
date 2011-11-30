@@ -1,3 +1,11 @@
+Notice
+=======
+Please note that this current version is not usable due to licensing issues - we don't have a license ready yet :(. We aim to resolve these issues by 2011-12-07.
+
+Thanks for your patience!
+
+
+
 Syncapse Event Track
 ====================
 
