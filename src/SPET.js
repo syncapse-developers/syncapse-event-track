@@ -3,7 +3,7 @@
  * @author developer-support@syncapse.com
  * @see https://github.com/syncapse-developers/syncapse-event-track 
  * @copyright Copyright 2011 Syncapse Corp.
- * @license Any use of this software must, at all times, comply with the current version of Syncapse's developer license agreement (the "License Agreement").  You may obtain a copy of the License Agreement at http://developers.syncapse.com/syncapse-event-track/LICENSE.txt.  
+ * @license Any use of this software must, at all times, comply with the current version of Syncapse's developer license agreement (the "License Agreement").  You may obtain a copy of the License Agreement at https://developers.syncapse.com/license/  
  * Except as expressly set out in the License Agreement or prohibited under applicable law, the software provided under the License Agreement is provided on an "as-is", "as available" and "with all faults" basis, and Syncapse expressly disclaims any and all representations, warranties and conditions concerning the software, including any and all representations, warranties or conditions of design, merchantability or fitness for any particular purpose, non-infringement or performance and any and all representations, warranties or conditions that might otherwise arise during the course of dealing, usage or trade and those which may be implied by law.
  */
 
