@@ -25,22 +25,40 @@ See https://github.com/syncapse-developers/syncapse-event-track for more info
 	<li><a href="implementation-6.html">View Example #6</a></li>
 </ul>
 
+<h3>Syncapse Event Track test page</h3>
 <p>
 	<!-- This link will be tracked automatically by Event Track as a link-click event -->
-	<a href="#default-link">A default link</a><br/>
-	
+	<a href="#default-link">A default link</a>
+	<br/>
+
 	<!-- This link will be tracked automatically by Event Track as a link-click-test-1 event -->
-	<a href="#link-test-1" track="link-click-test-1">My Test Link</a><br/>
-	
+	<a href="#link-test-1" data-track="link-click-test-1">My Test Link</a>
+	<br/>
+
 	<!-- This link will be NOT tracked automatically by Event Track -->
-	<a href="#link-test-untracked" track="false">An Untracked Link</a><br/>
-	
+	<a href="#link-test-1" data-track="false">An Untracked Link</a>
+	<br/>
+
 	<!-- This form will be tracked automatically by Event Track event as a form-submit event -->
-	<form action="#default-form" method="GET"><div>Default form</div><input type="submit" /></form>
-	
+	<form action="#default-form" method="GET">
+		<div>Default form</div>
+		<input type="submit" />
+	</form>
+
 	<!-- This form will be tracked automatically by Event Track event as a form-submit-test-1 event -->
-	<form action="#form-test-1" method="GET" track="form-submit-test-1"><div>Custom track form</div><input type="submit" /></form>
+	<form action="#form-test-1" method="GET" data-track="form-submit-test-1">
+		<div>Custom track form</div>
+		<input type="submit" />
+	</form>
 </p>
+
+<div data-track-children="parent-div">
+	<p data-track-children="parent-paragraph">
+		<!-- This link will be tracked automatically by Event Track. Because of its parent elements,
+		  it will be tracked as a link-click-test-2-parent-paragraph-parent-div event -->
+		<a href="#link-test-1" data-track="link-click-test-2">A nested link test</a>
+	</p>
+</div>
 
 <p>
 	Event Track is part of the Syncapse Analytics Suite. For more information, please see:
@@ -53,21 +71,30 @@ See https://github.com/syncapse-developers/syncapse-event-track for more info
 
 
 <!-- Load jQuery -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <!-- Syncapse Tracking Code START -->
-<script type="text/javascript" src="../src/SPET.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-$(document).ready(function() {
-	var appId = '234092466622279'; // The Event Track 1.0 iframe Demo App
-	var source = "http://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_?sk=app_" + appId;
-	var params = {"debug":true};
-	window._spet = new SPET(source, null, params);
+
+	var app_id = '245156032227773'; // The Event Track 2.0 iframe Demo App
+	var tab_url = "http://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_" + app_id;
+	var params = {
+		source: tab_url,
+		debug: true
+	};
 	
-    // this attaches listeners for <A> and <FORM> events
-    _spet.attachListeners(document);
-});
+	var _spet = _spet || {};
+   _spet.config = params;
+   
+   (function(s, d, t, v) {
+      var a = s.config.adaptors || {SPET:{}}, l = [], i;
+      for (i in a) { l.push(i); }; a = l.join(',');
+      var f = d.getElementsByTagName(t)[0], e = d.createElement(t); e.async = 1;
+      e.src = '//assets.syngrid.com/event-track/v/'+v+'?a='+a+'&debug='+s.config.debug; 
+      f.parentNode.insertBefore(e, f);
+      s.q = []; s.track = function(){ s.q.push(Array.prototype.slice.call(arguments)); };
+   })(_spet, document, 'script', '2.0');
 //]]>
 </script>
 <!-- Syncapse Tracking Code END -->

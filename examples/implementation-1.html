@@ -37,17 +37,27 @@ See https://github.com/syncapse-developers/syncapse-event-track for more info
 </p>
 
 <!-- Load jQuery -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <!-- Syncapse Tracking Code START -->
-<script type="text/javascript" src="../src/SPET.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-$(document).ready(function() {
-	console.info("jQuery loaded");
-});
+
+// Setup the global _spet object for tracking
+var _spet = _spet || {};
+_spet.config = {
+	debug: true
+};
+
+(function(s, d, t, v) {
+	var a = s.config.adaptors || {SPET:{}}, l = [], i;
+	for (i in a) { l.push(i); }; a = l.join(',');
+	var f = d.getElementsByTagName(t)[0], e = d.createElement(t); e.async = 1;
+	e.src = '//assets.syngrid.com/event-track/v/'+v+'?a='+a+'&debug='+s.config.debug; 
+	f.parentNode.insertBefore(e, f);
+	s.q = []; s.track = function(){ s.q.push(Array.prototype.slice.call(arguments)); };
+})(_spet, document, 'script', '2.0');
 //]]>
 </script>
-<!-- Syncapse Tracking Code END -->
 </body>
 </html>

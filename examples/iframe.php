@@ -17,7 +17,7 @@ if ( ! headers_sent()) header("Cache-control: Private");
 <body>
 
 
-<h3>Syncapse Event Track 1.1 test page</h3>
+<h3>Syncapse Event Track test page</h3>
 <p>
 	<!-- These links will be tracked automatically by SPET event: link-click -->
 	<a href="http://www.syncapse.com" target="_blank">Syncapse Corp.</a><br/>
@@ -48,24 +48,33 @@ if ( ! headers_sent()) header("Cache-control: Private");
 </ul>
 </p>
 
-<!-- Syncpase Tracking Code START -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="../src/SPET.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
 <script type="text/javascript">
-//<![CDATA[start
-$(document).ready(function() {
-	//console.info("jQuery loaded");
-	var appId = '234092466622279'; // The Event Track 1.0 iframe Demo App
-	var source = "http://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_?sk=app_" + appId;
-	var params = {"debug":true};
-	window._spet = new SPET(source, null, params);
-	
-	// this attaches listeners for <A> and <FORM> events
-	_spet.attachListeners(document);
-});
-//]]>end
+//<![CDATA[
+var app_id = '245156032227773'; // The Event Track 2.0 iframe Demo App
+var tab_url = "http://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_" + app_id;
+var params = {
+	source: tab_url,
+	debug: true
+};
+
+var _spet = _spet || {};
+_spet.config = params;
+
+(function(s, d, t, v) {
+  var a = s.config.adaptors || {SPET:{}}, l = [], i;
+  for (i in a) { l.push(i); }; a = l.join(',');
+  var f = d.getElementsByTagName(t)[0], e = d.createElement(t); e.async = 1;
+  e.src = '//assets.syngrid.com/event-track/v/'+v+'?a='+a+'&debug='+s.config.debug; 
+  f.parentNode.insertBefore(e, f);
+  s.q = []; s.track = function(){ s.q.push(Array.prototype.slice.call(arguments)); };
+})(_spet, document, 'script', '2.0');
+//]]>
 </script>
-<!-- Syncpase Tracking Code END -->
 
 <script type="text/javascript">
 //<![CDATA[start
