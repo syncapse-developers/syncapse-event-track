@@ -55,11 +55,11 @@ if ( ! headers_sent()) header("Cache-control: Private");
 
 <script type="text/javascript">
 //<![CDATA[
-var app_id = '245156032227773'; // The Event Track 2.0 iframe Demo App
+var app_id = '245156032227773'; // The Event Track 2.x iframe Demo App
 var tab_url = "http://www.facebook.com/pages/Event-Tracking-Demo/169269273142241?sk=app_" + app_id;
 var params = {
-	source: tab_url,
-	debug: true
+	source: tab_url, // this must be of the form http://www.facebook.com/PAGENAME?sk=app_APPID 
+	debug: true      // set this to false in production
 };
 
 var _spet = _spet || {};
@@ -72,7 +72,7 @@ _spet.config = params;
   e.src = '//assets.syngrid.com/event-track/v/'+v+'?a='+a+'&debug='+s.config.debug; 
   f.parentNode.insertBefore(e, f);
   s.q = []; s.track = function(){ s.q.push(Array.prototype.slice.call(arguments)); };
-})(_spet, document, 'script', '2.0');
+})(_spet, document, 'script', '2.2');
 //]]>
 </script>
 
